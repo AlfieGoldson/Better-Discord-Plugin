@@ -1,0 +1,20 @@
+{
+	"name": "better-discord",
+	"version": "1.0.0",
+	"main": "Corehalla.plugin.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "rollup -c rollup.config.js",
+		"dev": "rollup -c rollup.config.js -w"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.13.16",
+		"@babel/core": "^7.14.2",
+		"@babel/preset-env": "^7.14.2",
+		"@babel/preset-react": "^7.13.13",
+		"@rollup/plugin-babel": "^5.3.0",
+		"@rollup/plugin-json": "^4.1.0",
+		"@rollup/plugin-node-resolve": "^13.0.0",
+		"rollup": "^2.47.0"
+	}
+}
