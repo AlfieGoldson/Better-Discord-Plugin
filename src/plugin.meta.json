@@ -1,20 +1,20 @@
 {
-	"info": {
-		"name": "Corehalla",
-		"author": "Alfie",
-		"authorId": "248470457462947841",
-		"version": "0.1.0",
-		"description": "Corehalla Plugin for BetterDiscord",
-		"invite": "eD248ez",
-		"donate": "https://www.paypal.me/AlfieBH_",
-		"website": "https://neue.corehalla.com/"
-	},
-	"changeLog": {
-		"improved": {
-			"Channel Topic": "Formatting Channel Topic in Access Modal (makes Links clickable, etc)"
-		},
-		"fixed": {
-			"Settings": "Show again"
-		}
-	}
+    "info": {
+        "name": "Corehalla",
+        "author": "Alfie",
+        "authorId": "248470457462947841",
+        "version": "0.1.0",
+        "description": "Corehalla Plugin for BetterDiscord",
+        "invite": "eD248ez",
+        "donate": "https://www.paypal.me/AlfieBH_",
+        "website": "https://neue.corehalla.com/"
+    },
+    "changeLog": {
+        "improved": {
+            "Channel Topic": "Formatting Channel Topic in Access Modal (makes Links clickable, etc)"
+        },
+        "fixed": {
+            "Settings": "Show again"
+        }
+    }
 }
