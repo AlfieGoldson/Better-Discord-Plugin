@@ -1,0 +1,20 @@
+export default function _default(node: any): {
+    node: any;
+    readonly el: any;
+    readonly element: any;
+    readonly reactInternalInstance: any;
+    readonly props: any;
+    readonly state: any;
+    readonly stateNode: any;
+    readonly stateNodes: any[];
+    getComponentStateNode(component: any): any;
+    findStateNode(filter: any): any;
+    readonly component: any;
+    readonly components: any[];
+    getComponentByProps(props: any, selector: any): any;
+    getComponentByPrototypes(props: any, selector: any): any;
+    getComponentByRegex(regex: any, selector: any): any;
+    getComponentByDisplayName(name: any): any;
+    forceUpdate(filter: any): void;
+    prop(propName: any): any;
+};

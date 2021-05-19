@@ -1,16 +1,16 @@
-export default ([Plugin, BDFDB]) => {
+const loader: PluginLoader = ([Plugin, BDFDB]) => {
+    console.log('Plugin', Plugin);
     const React = {
         createElement: (el, props, children) =>
-            // eslint-disable-next-line react/no-children-prop
             BDFDB.ReactUtils.createElement(el, {
                 ...(props ?? {}),
                 children,
             }),
     };
 
-    return class Corehalla extends Plugin {
+    return class Corehalla extends DiscordPlugin {
         onLoad() {
-            console.log('Lib', BDFDB.LibraryModules);
+            console.log('Lib', JSON.stringify(BDFDB));
 
             this.patchedModules = {
                 after: {
@@ -106,3 +106,5 @@ export default ([Plugin, BDFDB]) => {
         }
     };
 };
+
+export default loader;

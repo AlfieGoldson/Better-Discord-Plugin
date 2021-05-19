@@ -1,0 +1,10 @@
+{
+    "info": {
+        "website": "https://neue.corehalla.com",
+        "github": "GITHUBBBB",
+        "github_raw": "asda",
+        "version": "asdolijksaldk"
+    },
+    "main": "index.js",
+    "output": "corehalla.plugin.js"
+}
