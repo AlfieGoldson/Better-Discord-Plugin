@@ -1,4 +1,4 @@
-import type { PluginFactory } from '../../@types';
+import type { PluginFactory } from '@bdjs/types';
 
 const plugin: PluginFactory = (Plugin, Api) => {
     // const { WebpackModules, ReactTools, Patcher, DiscordModules, Utilities, DCM } = Api;

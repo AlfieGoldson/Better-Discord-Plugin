@@ -3,20 +3,31 @@
 import path from 'path';
 import fs from 'fs';
 
+const repoLink = 'https://raw.githubusercontent.com/AlfieGoldson/Better-Discord-Plugin';
+const templatesPath = `${repoLink}/generator/templates`;
+const [pluginTemplate, installScript] = await Promise.all([
+    fetch(`${templatesPath}/plugin.js`),
+    fetch(`${templatesPath}/installscript.js`),
+]);
+
+console.log(pluginTemplate, installScript);
+
 await $`mkdir -p ./dist`;
 
+const workingDir = process.cwd();
+
 const [, , , ...pluginsList] = process.argv;
-const buildConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '../.bdrc')));
+const buildConfig = JSON.parse(fs.readFileSync(path.join(workingDir, '.bdrc')));
 
 console.log(buildConfig);
 
 const pluginsPath = path.isAbsolute(buildConfig.pluginsFolder)
     ? buildConfig.pluginsFolder
-    : path.join(__dirname, '..', buildConfig.pluginsFolder);
+    : path.join(workingDir, buildConfig.pluginsFolder);
 
 const releasePath = path.isAbsolute(buildConfig.releaseFolder)
     ? buildConfig.releaseFolder
-    : path.join(__dirname, '..', buildConfig.releaseFolder);
+    : path.join(workingDir, buildConfig.releaseFolder);
 
 const bdFolder =
     (process.platform === 'win32'
@@ -33,7 +44,7 @@ const formatString = (input, values) =>
         input ?? '',
     );
 
-const template = fs.readFileSync(path.join(__dirname, '../templates/plugin.js')).toString();
+const template = fs.readFileSync(path.join(workingDir, 'templates/plugin.js')).toString();
 
 console.log(pluginsList);
 
@@ -87,7 +98,7 @@ pluginsToBuild.forEach(async (pluginName) => {
         AUTHOR_LINK: config.info.authorLink ?? '',
         INVITE_CODE: config.info.inviteCode ?? '',
         INSTALL_SCRIPT: config.info.addInstallScript
-            ? fs.readFileSync(path.join(__dirname, '../templates/installscript.js')).toString()
+            ? fs.readFileSync(path.join(workingDir, '../templates/installscript.js')).toString()
             : '',
     });
 
