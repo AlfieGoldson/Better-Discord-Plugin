@@ -1,18 +1,6 @@
-// import { ColorConverter } from './modules';
-
 type Constructor<T> = new (...args: any[]) => T;
 
 export type PluginFactory = (Plugin: Constructor<Plugin>, Api: IApi) => Constructor<Plugin>;
-
-interface Settings {
-    type: 'collection' | 'category' | 'switch' | 'dropdown';
-    id: string;
-    name: string;
-    button: { title: string; onClick: () => void };
-    settings?: Settings[];
-    collapsible?: boolean;
-    note?: string;
-}
 
 declare abstract class Plugin {
     _config: never;
@@ -69,11 +57,11 @@ type PatchFn<Type extends PatchType = PatchType> = (
 ) => () => void;
 
 interface IApi {
-    ColorConverter: ColorConverter;
-    Components: Components;
-    ContextMenu: ContextMenu;
-    WebpackModules: WebpackModules;
-    ReactTools: never;
+    // ColorConverter: ColorConverter;
+    // Components: Components;
+    // ContextMenu: ContextMenu;
+    // WebpackModules: WebpackModules;
+    // ReactTools: never;
     Patcher: {
         getPatchesByCaller: () => never;
         unpatchAll: () => never;
@@ -81,56 +69,7 @@ interface IApi {
         after: PatchFn<'after'>;
         instead: PatchFn<'instead'>;
     };
-    DiscordModules: never;
-    Utilities: never;
-    DCM: never;
-}
-
-declare class Components {
-    ErrorBoundary: ErrorBoundary;
-}
-
-declare class ErrorBoundary {}
-
-/**
- * @deprecated
- */
-declare class ContextMenu {
-    ImageItem: ImageItem;
-    ItemGroup: ItemGroup;
-    Menu: Menu;
-    SubMenuItem: SubMenuItem;
-    TextItem: TextItem;
-    ToggleItem: ToggleItem;
-    udpateDiscordMenu: (menu: any) => any;
-}
-
-declare class ImageItem {}
-
-declare class ItemGroup {}
-
-declare class Menu {}
-
-declare class SubMenuItem {}
-
-declare class TextItem {}
-
-declare class ToggleItem {}
-
-declare class DCM {
-    buildMenu: (setup: any) => any;
-    buildMenuChildren: (setup: any) => any;
-    buildMenuItem: (props: any) => any;
-    forceUpdateMenus: () => any;
-    getDiscordMenu: () => any;
-    openContextMenu: (event, menuComponent, config) => any;
-    patchComponents: () => any;
-    patchMenuItem: () => any;
-    patchToggleItem: () => any;
-}
-
-declare class DOMTools {}
-
-declare class WebpackModules {
-    getByProps: (...props: string[]) => any;
+    // DiscordModules: never;
+    // Utilities: never;
+    // DCM: never;
 }

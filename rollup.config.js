@@ -6,29 +6,11 @@ import ts from '@rollup/plugin-typescript';
 import { config } from 'dotenv';
 config();
 
-const { DIST_URL } = process.env;
-
-const pluginName = 'Corehalla';
-
 export default {
-    // input: 'src/index.tsx',
     output: {
         format: 'cjs',
+        exports: 'auto',
     },
-    // output: [
-    //     {
-    //         file: `lib/${pluginName}.plugin.js`,
-    //         format: 'cjs',
-    //         sourcemap: false,
-    //         strict: false,
-    //     },
-    //     {
-    //         file: `${DIST_URL}/${pluginName}.plugin.js`,
-    //         format: 'cjs',
-    //         sourcemap: false,
-    //         strict: false,
-    //     },
-    // ],
     plugins: [
         nodeResolve({
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -39,6 +21,5 @@ export default {
         }),
         json(),
         ts(),
-        // addPluginMetadata({ metaFile: 'src/plugin.meta.js', deleteMetaFile: true }),
     ],
 };

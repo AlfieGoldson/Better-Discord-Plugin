@@ -1,0 +1,13 @@
+{
+    "info": {
+        "website": "https://neue.corehalla.com",
+        "github": "https://github.com/AlfieGoldson",
+        "githubRaw": "https://github.com/AlfieGoldson",
+        "patreonLink": "https://paypal.me/AlfieBH_",
+        "paypalLink": "https://paypal.me/AlfieBH_",
+        "version": "0.1.0",
+        "authorLink": "https://twitter.com/AlfieBH_",
+        "inviteCode": "BRUH"
+    },
+    "main": "index.tsx"
+}

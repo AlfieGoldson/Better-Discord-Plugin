@@ -3,6 +3,8 @@
 import path from 'path';
 import fs from 'fs';
 
+await $`mkdir -p ./dist`;
+
 const [, , , ...pluginsList] = process.argv;
 const buildConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '../.bdrc')));
 
@@ -31,12 +33,14 @@ const formatString = (input, values) =>
         input ?? '',
     );
 
-const template = fs.readFileSync(path.join(__dirname, 'template.js')).toString();
+const template = fs.readFileSync(path.join(__dirname, '../templates/plugin.js')).toString();
 
 console.log(pluginsList);
 
 const pluginsToBuild =
-    pluginsList ?? fs.readdirSync(pluginsPath).filter((f) => fs.lstatSync(path.join(pluginsPath, f)).isDirectory());
+    pluginsList.length > 0
+        ? pluginsList
+        : fs.readdirSync(pluginsPath).filter((f) => fs.lstatSync(path.join(pluginsPath, f)).isDirectory());
 
 console.log('');
 console.log(`Building ${pluginsToBuild.length} plugin${pluginsToBuild.length > 1 ? 's' : ''}`);
@@ -72,18 +76,18 @@ pluginsToBuild.forEach(async (pluginName) => {
 
     let result = formatString(template, {
         PLUGIN_NAME: pluginName,
-        CONFIG: `const config = JSON.stringify(config).replace(/"((?:[A-Za-z]|[0-9]|_)+)"\s?:/g, '$1:');`,
+        CONFIG: `const config = ${JSON.stringify(config).replace(/"((?:[A-Za-z]|[0-9]|_)+)"\s?:/g, '$1:')};`,
         INNER: `const plugin = ${content};`,
-        WEBSITE: config.info.github || formatString(buildConfig.github, { PLUGIN_NAME: pluginName }),
-        SOURCE: config.info.github_raw || formatString(buildConfig.githubRaw, { PLUGIN_NAME: pluginName }),
-        UPDATE_URL: config.info.github_raw || formatString(buildConfig.githubRaw, { PLUGIN_NAME: pluginName }),
+        WEBSITE: config.info.github ?? '',
+        SOURCE: config.info.githubRaw ?? '',
+        UPDATE_URL: config.info.githubRaw ?? '',
         VERSION: config.info.version ?? '',
-        PATREON: buildConfig.patreonLink ?? '',
-        PAYPAL: buildConfig.paypalLink ?? '',
-        AUTHOR_LINK: buildConfig.authorLink ?? '',
-        INVITE_CODE: buildConfig.inviteCode ?? '',
-        INSTALL_SCRIPT: buildConfig.addInstallScript
-            ? fs.readFileSync(path.join(__dirname, 'installscript.js')).toString()
+        PATREON: config.info.patreonLink ?? '',
+        PAYPAL: config.info.paypalLink ?? '',
+        AUTHOR_LINK: config.info.authorLink ?? '',
+        INVITE_CODE: config.info.inviteCode ?? '',
+        INSTALL_SCRIPT: config.info.addInstallScript
+            ? fs.readFileSync(path.join(__dirname, '../templates/installscript.js')).toString()
             : '',
     });
 

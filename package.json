@@ -4,12 +4,9 @@
     "main": "Corehalla.plugin.js",
     "license": "MIT",
     "scripts": {
-        "build": "rollup -c rollup.config.js",
+        "build": "zx ./scripts/build.mjs",
         "dev": "rollup -c rollup.config.js -w",
-        "lint": "eslint '*/**/*.{js,jsx}' --fix --ignore-path .eslintignore",
-        "config:gen": "tsc src/plugin.meta.ts",
-        "types:gen": "zx ./scripts/generateDataTypes.js",
-        "build:plugin": "zx ./scripts/build.mjs"
+        "lint": "eslint '*/**/*.{js,jsx}' --fix --ignore-path .eslintignore"
     },
     "devDependencies": {
         "@babel/cli": "^7.13.16",
