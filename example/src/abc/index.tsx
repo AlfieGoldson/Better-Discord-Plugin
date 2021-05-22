@@ -1,9 +1,11 @@
 import type { PluginFactory } from '@bdjs/core';
 
 const plugin: PluginFactory = (Plugin, Api) => {
-    const { Patcher, DiscordModules } = Api;
+    const { Patcher, DiscordModules, ReactComponents } = Api;
 
     console.log({ Plugin, Api });
+
+    // console.log(JSON.stringify(DiscordModules));
 
     return class HELLO extends Plugin {
         constructor() {
@@ -11,30 +13,28 @@ const plugin: PluginFactory = (Plugin, Api) => {
         }
 
         getName() {
-            return 'asdkasjd';
+            return 'ABC';
         }
         getVersion() {
             return '0.1.0';
         }
         getDescription() {
-            return 'asdolkasjhdlksaj';
+            return 'Test Plugin';
         }
         getAuthor() {
-            return 'askljdhasdlkj';
-        }
-        start() {
-            const currentUser = DiscordModules.UserStore.getCurrentUser();
-            console.log({ currentUser });
-        }
-        stop() {}
-
-        onStart() {
-            Patcher.after(DiscordModules.NotificationSettingsModal, 'updateNotificationSettings', () => {
-                console.log('hello');
-            });
+            return 'Alfie';
         }
 
-        onStop() {}
+        async onStart() {
+            // Patcher.after(DiscordModules.EmojiInfo, 'isEmojiFiltered', (thisObject, methodArguments, returnValue) => {
+            //     return returnValue || DiscordModules.EmojiInfo.isEmojiDisabled(methodArguments[0], methodArguments[1]);
+            // });
+            console.log('asijdjghsaikdujha');
+        }
+
+        onStop() {
+            // Patcher.unpatchAll();
+        }
     };
 };
 

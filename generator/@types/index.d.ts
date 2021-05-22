@@ -1,3 +1,5 @@
+import { DiscordModules } from './modules/DiscordModules';
+
 type Constructor<T> = new (...args: any[]) => T;
 
 export type PluginFactory = (Plugin: Constructor<Plugin>, Api: IApi) => Constructor<Plugin>;
@@ -53,7 +55,7 @@ interface PatchFnOptions<Type extends PatchType = PatchType> {
 type PatchFn<Type extends PatchType = PatchType> = (
     moduleToPatch: object,
     functionName: string,
-    callback: () => void,
+    callback: (thisObject: any, arguments: string[], returnValue: any) => void,
     options?: PatchFnOptions<Type>,
 ) => () => void;
 
@@ -70,7 +72,7 @@ interface IApi {
         after: PatchFn<'after'>;
         instead: PatchFn<'instead'>;
     };
-    // DiscordModules: never;
+    DiscordModules: DiscordModules;
     // Utilities: never;
     // DCM: never;
 }

@@ -1,34 +1,17 @@
 import path from 'path';
 import { readdirSync, lstatSync } from 'fs';
-import { writeFile, readFile, mkdir } from 'fs/promises';
+import { readFile, mkdir } from 'fs/promises';
 import { exit } from 'process';
 import { buildPlugin } from './buildPlugin';
+import { templatesCache } from './templatesCache';
 
-const repoLink = 'https://raw.githubusercontent.com/AlfieGoldson/Better-Discord-Plugin';
-const templatesPath = `${repoLink}/master/generator/templates`;
-
-const [pluginTemplateRes, installScriptRes] = await Promise.all([
-    await fetch(`${templatesPath}/plugin.js`),
-    await fetch(`${templatesPath}/installscript.js`),
-]);
-
-if (!pluginTemplateRes.ok) {
-    console.error('Failed to fetch plugin template');
-    exit(1);
-}
-
-const pluginTemplate = await pluginTemplateRes.text();
-
-if (!installScriptRes.ok) {
-    console.error('Failed to fetch installscript template');
-    exit(1);
-}
-
-const installScript = await installScriptRes.text();
+const { installScript, pluginTemplate } = await templatesCache();
 
 const workingDir = process.cwd();
 
-const [, , , ...pluginsList] = process.argv;
+const [, , , ...args] = process.argv;
+const pluginsList = args.filter((arg) => !arg.startsWith('-') && !arg.startsWith('--'));
+// const watch = args.find((arg) => arg === '-w' || arg === '--watch');
 
 try {
     const buildConfigRaw = await readFile(path.join(workingDir, '.bdrc.json'));
@@ -42,17 +25,17 @@ try {
         ? buildConfig.releaseFolder
         : path.join(workingDir, buildConfig.releaseFolder);
 
-    const bdFolder =
-        buildConfig.BDFolder ??
-        `${
-            process.platform === 'win32'
-                ? process.env.APPDATA
-                : process.platform === 'darwin'
-                ? `${process.env.HOME}/Library/Preferences`
-                : process.env.XDG_CONFIG_HOME
-                ? process.env.XDG_CONFIG_HOME
-                : `${process.env.HOME}/.config`
-        }/BetterDiscord`;
+    // const bdFolder =
+    //     buildConfig.BDFolder ??
+    //     `${
+    //         process.platform === 'win32'
+    //             ? process.env.APPDATA
+    //             : process.platform === 'darwin'
+    //             ? `${process.env.HOME}/Library/Preferences`
+    //             : process.env.XDG_CONFIG_HOME
+    //             ? process.env.XDG_CONFIG_HOME
+    //             : `${process.env.HOME}/.config`
+    //     }/BetterDiscord`;
 
     console.log(pluginsList);
 
@@ -75,19 +58,14 @@ try {
             const releaseFilename = `${pluginName}.plugin.js`;
             const releaseFile = path.join(releaseDir, releaseFilename);
 
-            const bundle = await buildPlugin(pluginName, {
+            await buildPlugin(pluginName, {
                 pluginPath,
+                releaseFile,
                 pluginTemplate,
                 installScript: buildConfig.addInstallScript && installScript ? installScript : '',
             });
 
-            await writeFile(releaseFile, bundle);
             console.log(`${pluginName} saved as ${releaseFile}`);
-
-            if (buildConfig.copyToBD) {
-                console.log(`Copying ${pluginName} to BD folder`);
-                await writeFile(path.join(bdFolder, 'plugins', releaseFilename), bundle);
-            }
         } catch (e) {
             console.error(e);
             return;
