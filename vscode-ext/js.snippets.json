@@ -1,0 +1,42 @@
+{
+    "Create JS Better Discord plugin.": {
+        "prefix": "bdplugin",
+        "body": [
+            "const plugin = (Plugin, Api) => {",
+            "\tconst { $6 } = Api;",
+            "",
+            "\treturn class $1 extends Plugin {",
+            "\t\tconstructor() {",
+            "\t\t\tsuper();",
+            "\t\t}",
+            "",
+            "\t\tgetName() {",
+            "\t\t\treturn '$2';",
+            "\t\t}",
+            "",
+            "\t\tgetVersion() {",
+            "\t\t\treturn '$3';",
+            "\t\t}",
+            "",
+            "\t\tgetDescription() {",
+            "\t\t\treturn '$4';",
+            "\t\t}",
+            "",
+            "\t\tgetAuthor() {",
+            "\t\t\treturn '$5';",
+            "\t\t}",
+            "",
+            "\t\tstart() {$7}",
+            "",
+            "\t\tstop() {$8}",
+            "",
+            "\t\tonStart() {$9}",
+            "",
+            "\t\tonStop() {$10}",
+            "\t};",
+            "};",
+            "",
+            "export default plugin;"
+        ]
+    }
+}

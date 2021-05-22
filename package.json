@@ -2,6 +2,7 @@
     "private": true,
     "workspaces": [
         "generator",
-        "example"
+        "example",
+        "vscode-ext"
     ]
 }

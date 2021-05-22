@@ -11,8 +11,9 @@ declare abstract class Plugin {
     getDescription(): string;
     getVersion(): string;
     getAuthor(): string;
-    load(): string;
-    stop(): string;
+    start(): void;
+    load(): void;
+    stop(): void;
     get isEnabled(): string;
     get strings(): string[];
     set strings(strings: string[]);

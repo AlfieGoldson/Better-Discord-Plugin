@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Schema for .bdplugin",
+    "type": "object",
+    "properties": {
+        "info": {
+            "description": "Plugin Info",
+            "type": "object",
+            "properties": {
+                "website": { "description": "Plugin website.", "type": "string" },
+                "github": { "description": "Github repo.", "type": "string" },
+                "githubRaw": { "description": "Raw plugin file link.", "type": "string" },
+                "patreonLink": { "description": "Patreon link.", "type": "string" },
+                "paypalLink": { "description": "Paypal.me link.", "type": "string" },
+                "version": { "description": "Plugin version.", "type": "string" },
+                "authorLink": { "description": "Author link.", "type": "string" },
+                "inviteCode": { "description": "Discord server invite code.", "type": "string" }
+            },
+            "required": ["version"]
+        },
+        "main": { "description": "Plugin entry file.", "type": "string" }
+    },
+    "required": ["info", "main"]
+}

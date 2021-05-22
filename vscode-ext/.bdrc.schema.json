@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Schema for .bdrc",
+    "type": "object",
+    "definitions": {
+        "pluginsFolder": { "description": "Plugins Source Folder", "type": "string" },
+        "releaseFolder": { "description": "Release Folder", "type": "string" },
+        "copyToBD": { "description": "Copy plugin(s) to Better Discord folder.", "type": "boolean" }
+    },
+    "required": ["pluginsFolder", "releaseFolder"]
+}

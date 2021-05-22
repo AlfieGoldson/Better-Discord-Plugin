@@ -7,6 +7,6 @@
         "build": "build-bd-plugin"
     },
     "devDependencies": {
-        "@bdjs/types": "0.1.0"
+        "@bdjs/core": "0.1.0"
     }
 }
