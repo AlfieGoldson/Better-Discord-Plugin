@@ -23,11 +23,10 @@ const plugin: PluginFactory = (Plugin, Api) => {
             return 'askljdhasdlkj';
         }
         start() {
-            return 'sadsad';
+            const currentUser = DiscordModules.UserStore.getCurrentUser();
+            console.log({ currentUser });
         }
-        stop() {
-            return 'sadsad';
-        }
+        stop() {}
 
         onStart() {
             Patcher.after(DiscordModules.NotificationSettingsModal, 'updateNotificationSettings', () => {

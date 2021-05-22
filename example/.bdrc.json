@@ -1,4 +1,6 @@
 {
     "pluginsFolder": "./src",
-    "releaseFolder": "./dist"
+    "releaseFolder": "./dist",
+    "BDFolder": "/mnt/c/Users/Alfie/AppData/Roaming/BetterDiscord",
+    "copyToBD": true
 }

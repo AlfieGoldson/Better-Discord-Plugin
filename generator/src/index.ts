@@ -43,13 +43,16 @@ try {
         : path.join(workingDir, buildConfig.releaseFolder);
 
     const bdFolder =
-        (process.platform === 'win32'
-            ? process.env.APPDATA
-            : process.platform === 'darwin'
-            ? `${process.env.HOME}/Library/Preferences`
-            : process.env.XDG_CONFIG_HOME
-            ? process.env.XDG_CONFIG_HOME
-            : `${process.env.HOME}/.config`) + '/BetterDiscord/';
+        buildConfig.BDFolder ??
+        `${
+            process.platform === 'win32'
+                ? process.env.APPDATA
+                : process.platform === 'darwin'
+                ? `${process.env.HOME}/Library/Preferences`
+                : process.env.XDG_CONFIG_HOME
+                ? process.env.XDG_CONFIG_HOME
+                : `${process.env.HOME}/.config`
+        }/BetterDiscord`;
 
     console.log(pluginsList);
 
