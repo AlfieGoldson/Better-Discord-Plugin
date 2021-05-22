@@ -62,7 +62,7 @@ try {
     console.log(`Building ${pluginsToBuild.length} plugin${pluginsToBuild.length > 1 ? 's' : ''}`);
     console.time('Build took');
 
-    pluginsToBuild.forEach(async (pluginName) => {
+    const pluginsPromises = pluginsToBuild.map(async (pluginName) => {
         try {
             const pluginPath = path.join(pluginsPath, pluginName);
             const releaseDir = path.join(releasePath, pluginName);
@@ -90,6 +90,8 @@ try {
             return;
         }
     });
+
+    await Promise.all(pluginsPromises);
 
     console.timeEnd('Build took');
 } catch (e) {

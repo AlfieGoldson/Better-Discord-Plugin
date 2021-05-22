@@ -4,7 +4,6 @@ import { access, readFile } from 'fs/promises';
 import { rollup } from 'rollup';
 import { getRollupInput, getRollupOutput } from './rollup.config';
 import { formatString } from './formatString';
-import { Module } from 'module';
 
 interface BuildOptions {
     pluginPath: string;
