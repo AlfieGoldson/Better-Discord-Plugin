@@ -39,7 +39,7 @@ export const buildPlugin = async (
     { pluginPath, installScript, pluginTemplate }: BuildOptions,
 ): Promise<string> => {
     try {
-        const configPath = path.join(pluginPath, '.bdplugin');
+        const configPath = path.join(pluginPath, '.bdplugin.json');
         console.log(`Building ${pluginName} from ${configPath}`);
         const config = await getPluginConfig(configPath);
         const entryFile = path.join(pluginPath, config.main || 'index.js');

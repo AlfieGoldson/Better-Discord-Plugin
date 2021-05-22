@@ -40,11 +40,11 @@
         ],
         "jsonValidation": [
             {
-                "fileMatch": ".bdrc",
+                "fileMatch": ".bdrc.json",
                 "url": "./.bdrc.schema.json"
             },
             {
-                "fileMatch": ".bdplugin",
+                "fileMatch": ".bdplugin.json",
                 "url": "./.bdplugin.schema.json"
             }
         ],
@@ -52,8 +52,8 @@
             {
                 "id": "json",
                 "filenames": [
-                    ".bdrc",
-                    ".bdplugin"
+                    ".bdrc.json",
+                    ".bdplugin.json"
                 ],
                 "icon": "./assets/icons/discord.svg"
             }

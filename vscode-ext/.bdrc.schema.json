@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Schema for .bdrc",
+    "title": "Schema for .bdrc.json",
     "type": "object",
     "definitions": {
         "pluginsFolder": { "description": "Plugins Source Folder", "type": "string" },

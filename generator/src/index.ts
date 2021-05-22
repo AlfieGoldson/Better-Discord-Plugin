@@ -31,7 +31,7 @@ const workingDir = process.cwd();
 const [, , , ...pluginsList] = process.argv;
 
 try {
-    const buildConfigRaw = await readFile(path.join(workingDir, '.bdrc'));
+    const buildConfigRaw = await readFile(path.join(workingDir, '.bdrc.json'));
     const buildConfig = JSON.parse(buildConfigRaw.toString());
 
     const pluginsPath = path.isAbsolute(buildConfig.pluginsFolder)
